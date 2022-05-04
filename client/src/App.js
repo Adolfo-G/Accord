@@ -16,21 +16,22 @@ function App() {
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
-
-      console.log(authUser)
+      console.log(authUser);
 
       if (authUser) {
-        dispatch(login({
-          uid: authUser.uid,
-          photo: authUser.photoURL,
-          email: authUser.email,
-          displayName: authUser.displayName
-        }))
+        dispatch(
+          login({
+            uid: authUser.uid,
+            photo: authUser.photoURL,
+            email: authUser.email,
+            displayName: authUser.displayName,
+          })
+        );
       } else {
-        dispatch(logout())
+        dispatch(logout());
       }
-    })
-  }, [dispatch])
+    });
+  }, [dispatch]);
 
   console.log(user);
 
@@ -41,12 +42,11 @@ function App() {
           <Chat />
           <Sidebar />
         </>
-
       ) : (
         <Login />
       )}
     </div>
   );
-};
+}
 
 export default App;
