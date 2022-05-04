@@ -1,18 +1,32 @@
 .login {
-    display: grid;
-    place-items: center;
-    height: 100vh;
-    width: 100%;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100%;
 }
 
-.login>button {
-    width: 300px;
-    background-color: #738adb;
-    color: #eff2f5;
-    font-weight: 800;
+.login__buttons {
+  width: 250px;
 }
 
-.login>button:hover {
-    background-color: black;
-    color: #738adb;
+.login__buttons > div > Button {
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.login__signUp,
+.login__login,
+.login__googleLogin {
+  background-color: #738adb;
+  margin: 5px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.login__signUp:hover,
+.login__login:hover,
+.login__googleLogin:hover {
+  background-color: rgb(39, 59, 137);
+  color: #ffffff;
 }
