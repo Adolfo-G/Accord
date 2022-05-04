@@ -17,11 +17,13 @@ import db, { auth } from './firebase';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from './axios';
-import Pusher from 'pusher-js';
+//import Pusher from 'pusher-js';
+// const pusher = new Pusher('3a3001939979161ff763', {
+//     cluster: 'us2'
+//   });
 
-const pusher = new Pusher('3a3001939979161ff763', {
-    cluster: 'us2'
-  });
+const { io } = require("socket.io-client");
+const socket = io.connect();
 
 
 const Sidebar = () => {
@@ -52,18 +54,18 @@ const Sidebar = () => {
             })
             .catch( err => console.error );
     };
-
-    useEffect(() => {
+////Error channel.bind is not a function
+    // useEffect(() => {
         
-        getChannels();
+    //     getChannels();
 
-        const channel = pusher.subscribe('channels');
-        channel.bind('newChannel', function (data) {
-            getChannels();
+    //     const channel = socket.emit('subscribe','channels');
+    //     channel.bind('newChannel', function (data) {
+    //         getChannels();
 
-        });
+    //     });
 
-    }, []);
+    // }, []);
 
     const handleAddChannel = (e) => {
         e.preventDefault()

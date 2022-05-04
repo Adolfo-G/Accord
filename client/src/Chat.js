@@ -15,12 +15,14 @@ import { useEffect } from 'react';
 import db from './firebase';
 import firebase from 'firebase';
 import axios from './axios';
-import Pusher from 'pusher-js';
+// const { io } = require("socket.io-client");
+// const socket = io.connect();
+//"http://localhost:3000"
+//import Pusher from 'pusher-js';
 
-const pusher = new Pusher('3a3001939979161ff763', {
-    cluster: 'us2'
-  });
-
+// const pusher = new Pusher('3a3001939979161ff763', {
+//     cluster: 'us2'
+//   });
 
 const Chat = () => {
     const user = useSelector(selectUser);
@@ -36,18 +38,18 @@ const Chat = () => {
             })
         }
     };
+////Error channel.bind is not a function
+    // useEffect(() => {
 
-    useEffect(() => {
+    //     getConversation(channelId);
 
-        getConversation(channelId);
+    //     const channel = socket.emit('subscribe','conversation');
+    //     channel.bind('newMessage', function (data) {
+    //         getConversation(channelId);
 
-        const channel = pusher.subscribe('conversation');
-        channel.bind('newMessage', function (data) {
-            getConversation(channelId);
+    //     });
 
-        });
-
-    }, [channelId])
+    // }, [channelId])
 
     const sendMessage = (e) => {
         e.preventDefault()
