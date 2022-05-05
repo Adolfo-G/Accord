@@ -68,8 +68,8 @@ function App() {
           <>
             <Chat />
             <Sidebar />
-            <GetUsers />
-            <GetChannels />
+            {/* <GetUsers />
+            <GetChannels /> */}
           </>
         ) : (
           <Login />
