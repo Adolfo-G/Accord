@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { useMutation } from '@apollo/client';
+import {CREATE_USER} from '../utils/mutations';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,14 +25,20 @@ const useStyles = makeStyles((theme) => ({
 
 const SignUpForm = ({ handleClose }) => {
   const classes = useStyles();
-  // create state variables for each input
-  const [userName, setUserName] = useState('');
+ 
+  const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [createUser, {error}] = useMutation(CREATE_USER);
+
+  // const addUser = 
+
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userName, email, password);
+    console.log(username, email, password);
     handleClose();
   };
 
@@ -40,7 +48,7 @@ const SignUpForm = ({ handleClose }) => {
         label="Username"
         variant="filled"
         required
-        value={userName}
+        value={username}
         onChange={(e) => setUserName(e.target.value)}
       />
       <TextField

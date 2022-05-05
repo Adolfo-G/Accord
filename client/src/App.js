@@ -10,6 +10,32 @@ import { useEffect } from 'react';
 import { auth } from './firebase';
 import { login, logout } from './features/userSlice';
 
+//apollo
+import {ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from} from '@apollo/client';
+import {onError} from '@apollo/client/link/error';
+import GetUsers from './components/GetUsers';
+import GetChannels from './components/GetChannels';
+
+//to check errors from graphql 
+const errorLink = onError(({graphqlErrors, networkError})=> {
+  if (graphqlErrors) {
+    graphqlErrors.map(({message, location, path}) => {
+      alert(`Graphql error ${message}`);
+    });
+  }
+});
+
+const link = from([
+  errorLink, 
+  new HttpLink({uri: "http://localhost:3001/graphql"}),
+])
+
+const client = new ApolloClient({
+  uri: '/graphql',
+  cache: new InMemoryCache(),
+  link: link
+});
+
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
@@ -36,16 +62,20 @@ function App() {
   console.log(user);
 
   return (
-    <div className="app">
-      {user ? (
-        <>
-          <Chat />
-          <Sidebar />
-        </>
-      ) : (
-        <Login />
-      )}
-    </div>
+    <ApolloProvider client={client}>
+      <div className="app">
+        {user ? (
+          <>
+            <Chat />
+            <Sidebar />
+            {/* <GetUsers />
+            <GetChannels /> */}
+          </>
+        ) : (
+          <Login />
+        )}
+      </div>
+    </ApolloProvider>
   );
 }
 

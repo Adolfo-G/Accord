@@ -84,5 +84,10 @@
 }
 
 .sidebar__profileIcons>.MuiSvgIcon-root {
+    font-size: 48px;
     padding: 10px;
+}
+
+.sidebar__profileIcons>.MuiSvgIcon-root:active {
+    color: #3c5c64;
 }

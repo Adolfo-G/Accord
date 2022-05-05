@@ -3,7 +3,8 @@ const app = express();
 const http = require('http')
 const {Server} = require('socket.io')
 const cors = require('cors');
-app.use(cors())
+// const bodyParser = require('body-parser');
+
 
 //apollo
 const { ApolloServer } = require('apollo-server-express');
@@ -25,6 +26,9 @@ const server = new ApolloServer({
 // middlewares
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+// app.use(cors());
+// app.use(bodyParser.json());
 
 
 if (process.env.NODE_ENV === 'production') {
