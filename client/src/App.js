@@ -14,6 +14,7 @@ import { login, logout } from './features/userSlice';
 import {ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from} from '@apollo/client';
 import {onError} from '@apollo/client/link/error';
 import GetUsers from './components/GetUsers';
+import GetChannels from './components/GetChannels';
 
 //to check errors from graphql 
 const errorLink = onError(({graphqlErrors, networkError})=> {
@@ -68,6 +69,7 @@ function App() {
             <Chat />
             <Sidebar />
             <GetUsers />
+            <GetChannels />
           </>
         ) : (
           <Login />

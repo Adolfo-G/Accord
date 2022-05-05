@@ -38,8 +38,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    createUser(username: String!, email: String!, password: String!): User
-    createChannel(channelName: String!, date_created: Date!): Channel
+    createUser(_id: ID!, username: String!, email: String!, password: String!): User
+    createChannel(_id: ID!, channelName: String!, date_created: Date!): Channel
   }
 
 `;

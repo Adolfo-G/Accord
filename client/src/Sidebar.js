@@ -12,6 +12,7 @@ import db, { auth } from './firebase';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from './axios';
+
 //import Pusher from 'pusher-js';
 // const pusher = new Pusher('3a3001939979161ff763', {
 //     cluster: 'us2'
@@ -112,7 +113,8 @@ const Sidebar = () => {
                 </div>
             </div>
             <div className="sidebar__profile">
-                <Avatar src={user.photo} />
+                
+               <Avatar src={user.photo} />
                 
 
                 <div className="sidebar__profileInfo">
