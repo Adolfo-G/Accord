@@ -1,6 +1,6 @@
 const User = require('./User');
 const Chat = require('./Chat');
-
+const Channel = require('./Channel');
 
 User.hasMany(Chat, {
   foreignKey: 'user_id',
@@ -11,4 +11,4 @@ Chat.belongsTo(User, {
   foreignKey: 'user_id',
 });
 
-module.exports = { User, Chat };
+module.exports = { User, Chat, Channel };

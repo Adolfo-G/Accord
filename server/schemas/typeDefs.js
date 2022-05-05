@@ -6,6 +6,7 @@ const typeDefs = gql`
     id: ID!
     date: Date!
   }
+
   type User {
     _id: ID!
     username: String!
@@ -21,13 +22,24 @@ const typeDefs = gql`
     date_created: Date!
   }
 
-  type Query {
-    user: [User]
+  type Channel {
+    _id: ID!
+    channelName: String!
+    date_created: Date!
     chats: [Chat]
+    users: [User]
+  }
+
+  type Query {
+    users: [User]
+    chats: [Chat]
+    channels: [Channel]
     events: [Event!]
   }
+
   type Mutation {
     createUser(username: String!, email: String!, password: String!): User
+    createChannel(channelName: String!, date_created: Date!): Channel
   }
 
 `;

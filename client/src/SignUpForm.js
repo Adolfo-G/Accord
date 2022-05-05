@@ -24,13 +24,13 @@ const useStyles = makeStyles((theme) => ({
 const SignUpForm = ({ handleClose }) => {
   const classes = useStyles();
   // create state variables for each input
-  const [userName, setUserName] = useState('');
+  const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userName, email, password);
+    console.log(username, email, password);
     handleClose();
   };
 
@@ -40,7 +40,7 @@ const SignUpForm = ({ handleClose }) => {
         label="Username"
         variant="filled"
         required
-        value={userName}
+        value={username}
         onChange={(e) => setUserName(e.target.value)}
       />
       <TextField

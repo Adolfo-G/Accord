@@ -3,14 +3,9 @@ import './Sidebar.css';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AddIcon from '@material-ui/icons/Add';
 import SidebarChannel from './SidebarChannel';
-import SignalCellularAltIcon from '@material-ui/icons/SignalCellularAlt';
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import CallIcon from '@material-ui/icons/Call';
+import getChannels from './components/GetChannels';
 import { Avatar } from '@material-ui/core';
-import MicIcon from '@material-ui/icons/Mic';
-import HeadsetIcon from '@material-ui/icons/Headset';
-import SettingsIcon from '@material-ui/icons/Settings';
-import ClearIcon from '@material-ui/icons/Clear';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useSelector } from 'react-redux';
 import { selectUser } from './features/userSlice';
 import db, { auth } from './firebase';
@@ -107,28 +102,26 @@ const Sidebar = () => {
             </div>
 
             <div className="sidebar__voice">
-                {/* <SignalCellularAltIcon className='sidebar__voiceIcons' fontSize='large' /> */}
                 <div className="sidebar__voiceInfo">
                     <h3>Connected</h3>
                     <p>To Chat</p>
                 </div>
 
                 <div className="sidebar__voiceIcons">
-                    {/* <InfoOutlinedIcon />
-                    <CallIcon /> */}
+
                 </div>
             </div>
             <div className="sidebar__profile">
-                <Avatar src={user.photo} onClick={() => auth.signOut()} />
+                <Avatar src={user.photo} />
+                
+
                 <div className="sidebar__profileInfo">
                     <h3>{user.displayName}</h3>
                     <p>#{user.uid.substring(0, 5)}</p>
                 </div>
 
                 <div className="sidebar__profileIcons">
-                    {/* <MicIcon />
-                    <HeadsetIcon />
-                    <SettingsIcon /> */}
+                    <ExitToAppIcon onClick={() => auth.signOut()} />
                 </div>
             </div>
         </div>
