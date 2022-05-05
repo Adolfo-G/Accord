@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "discord clone",
   "main": "server.js",
-  "homepage": "https://evening-fjord-83497.herokuapp.com/",
+  "proxy": "http://localhost:3001",
   "scripts": {
     "start": "node server.js",
     "seed": "node seeds/seed.js",
