@@ -8,38 +8,41 @@ const typeDefs = gql`
   }
 
   type User {
-    _id: ID!
-    username: String!
-    email: String!
+    _id: ID! 
+    displayName: String!
+    userName: String!
     password: String!
-    chats: [Chat]
+    email: String!
+    photo: String!
+    uid: String!
   }
 
   type Chat {
     _id: ID!
-    username: String!
     message: String!
-    date_created: Date!
+    timeStamp: String!
+    dateCreated: Date!
+    user:[User]
   }
 
   type Channel {
     _id: ID!
     channelName: String!
-    date_created: Date!
-    chats: [Chat]
-    users: [User]
+    chat: [Chat]
   }
+
 
   type Query {
     users: [User]
     chats: [Chat]
     channels: [Channel]
-    events: [Event!]
+    events: [Event]
   }
 
   type Mutation {
-    createUser(_id: ID!, username: String!, email: String!, password: String!): User
-    createChannel(_id: ID!, channelName: String!, date_created: Date!): Channel
+    createUser(displayName: String!, userName: String!, password: String!, email: String!, photo: String!, uid: String!): User
+    createChat(message: String!, timeStamp: String!, dateCreated: Date!): Chat
+    createChannel(channelName: String!): Channel
   }
 
 `;

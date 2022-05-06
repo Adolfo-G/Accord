@@ -1,0 +1,35 @@
+[
+   
+    {
+        "channelName": "Testing",
+        "conversation": [
+            {
+                "message": "Hi",
+                "timestamp": "05/05/2022",
+                "user": {
+                    "displayName": "Test",
+                    "email": "test@gmail.com",
+                    "photo": "Picture",
+                    "uid": "123445677"
+                }
+            }
+        ]
+    },
+
+    {
+        "channelName": "Test",
+        "conversation": [
+            {
+                "message": "Is this working?",
+                "timestamp": "05/06/2022",
+                "user": {
+                    "displayName": "Test",
+                    "email": "test@gmail.com",
+                    "photo": "Picture",
+                    "uid": "123455679"
+                }
+            }
+        ]
+    }
+
+]
