@@ -3,7 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import './Login.css';
 import { auth, provider } from './firebase';
-import ModalDialog from './components/ModalDialog';
+import ModalDialog from './components/FormPopup';
 
 const Login = () => {
   const [open, setOpen] = useState(false);
