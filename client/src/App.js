@@ -3,12 +3,19 @@ import './App.css';
 
 import { selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import Login from './pages/Login';
+
 import { useEffect } from 'react';
 import { auth } from './firebase';
 import { login, logout } from './features/userSlice';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
+
+import Header from './components/Header';
+import Footer from './components/Footer';
+import HomePage from './pages/HomePage'; //blog
+import LoginPage from './pages/LoginPage';
+import ChatPage from './pages/ChatPage';
+import ProfilePage from './pages/ProfilePage';
 
 //apollo
 import {
@@ -66,18 +73,24 @@ function App() {
   console.log(user);
 
   return (
+    // <div className="app">
+    //   {user ? (
     <Container fluid className="blog-app">
-      <Router basename="/accord">
+      <Router basename="/Accord">
         <Header />
         <Routes>
-          <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/login" element={<AboutMePage />} />
-          <Route exact path="/homepage" element={<ProjectsPage />} />
-          <Route exact path="/chat" element={<ResumePage />} />
+          <Route exact path="/" element={<LoginPage />} />
+          <Route exact path="/homepage" element={<HomePage />} />
+          <Route exact path="/page/profile" element={<ProfilePage />} />
+          <Route exact path="/page/chat" element={<ChatPage />} />
         </Routes>
         <Footer />
       </Router>
     </Container>
+    //   ) : (
+    //     <LoginPage />
+    //   )}
+    // </div>
   );
 }
 
