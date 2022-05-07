@@ -21,19 +21,19 @@ export const UPDATE_USER = gql`
   }
 `;
 
-export const ADD_POST = gql`
-  mutation addPost($username: String! $title: String! $content: String!) {
-   addPost(title: String! content: String!) {
-    _id  
-    username
-     Posts {
-       postId 
-       title
-       content
-     }
-    }
-  }
-`;
+// export const ADD_POST = gql`
+//   mutation addPost($username: String! $title: String! $content: String!) {
+//    addPost(title: String! content: String!) {
+//     _id  
+//     username
+//      Posts {
+//        postId 
+//        title
+//        content
+//      }
+//     }
+//   }
+// `;
 
 export const DELETE_BOOK = gql`
   mutation removePost($postID: ID!) {
