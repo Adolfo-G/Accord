@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
-    <div class="container">
+    <div className="container">
       <footer className="footer contentBox">
         <div className="row">
           <h3>Footer Contact Info:</h3>

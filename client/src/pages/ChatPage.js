@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function ChatPage() {
   return (
-    <div class="container">
+    <div className="container">
       <div className="col-xs-12 col-sm-12 col-md-12 justify-content-center">
         <div className="main-picture contentBox">
           <h1>Chat!</h1>

@@ -4,8 +4,8 @@ import Post from './Post';
 
 const PostsList = () => {
   return (
-
+    <h1>post list</h1>
   );
   };
 
-  
+  export default PostsList

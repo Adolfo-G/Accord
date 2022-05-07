@@ -7,6 +7,6 @@ const Post = ({ post }) => {
   };
 
   return (
-      //render compnents here
+      <h1>Posts</h1>
   );
 };
