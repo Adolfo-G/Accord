@@ -1,25 +1,17 @@
-const sequelize = require('../config/connection');
-const { User, Chat } = require('../models');
+const db = require('../config/connection');
+const { User} = require('../models');
+const userSeeds = require('./userData.json');
 
-const userData = require('./userData.json');
-const chatData = require('./chatData.json');
+db.once('open', async () => {
+  try {
+    await User.deleteMany({});
+    await User.create(userSeeds);
 
-const seedDatabase = async () => {
-  await sequelize.sync({ force: true });
-
-  const users = await User.bulkCreate(userData, {
-    individualHooks: true,
-    returning: true,
-  });
-
-  for (const chat of chatData) {
-    await Chat.create({
-      ...chat,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
-    });
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
   }
 
+  console.log('all done!');
   process.exit(0);
-};
-
-seedDatabase();
+});
