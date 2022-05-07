@@ -11,12 +11,40 @@ export const CREATE_USER = gql`
   }
 `;
 
-export const CREATE_CHANNEL = gql`
-  mutation createChannel($channelName: String! $date_created: Date!) {
-    createChannel(channelName: $channelName date_created: $date_created) {
-      _id
-      channelName
-      date_created
+export const UPDATE_USER = gql`
+  mutation updateUser($username: String!) {
+    updateUser(username: $username) {
+     _id
+     username
+   }
+  }
+`;
+
+export const ADD_POST = gql`
+  mutation addPost($username: String! $title: String! $content: String!) {
+   addPost(title: String! content: String!) {
+    _id  
+    username
+     Posts {
+       postId 
+       title
+       content
+     }
     }
   }
 `;
+
+export const DELETE_BOOK = gql`
+  mutation removePost($postID: ID!) {
+    removePost(post: $postID) {
+      _id
+      username
+      Posts {
+        postID
+        title
+        content
+      }
+    }
+  }
+`;
+
