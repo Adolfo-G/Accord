@@ -1,4 +1,4 @@
-const { User, Chat, Channel } = require('../models');
+const { User} = require('../models');
 const { GraphQLScalarType, Kind } = require('graphql');
 
 const dateScalar = new GraphQLScalarType({
@@ -22,13 +22,7 @@ const resolvers = {
   Date: dateScalar.parseValue(),
   Query: {
     users: async () => {
-      return User.findAll();
-    },
-    chats: async () => {
-      return Chat.findAll();
-    },
-    channels: async () => {
-      return Channel.findAll();
+      return User.find();
     },
   },
   Mutation:{
