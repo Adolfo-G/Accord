@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { PostsList } from '../components/PostList';
+import { Post } from '../components/Post';
+import { AddPostForm } from '../components/PostForm'
 
 function HomePage() {
   return (
