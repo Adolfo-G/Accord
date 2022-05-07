@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Header() {
   return (
-    <div class="container">
+    <div className="container">
       <div className="col-xs-12 col-sm-12 col-md-12 justify-content-center">
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark navBarStyle contentBox">
           <Link to="/" className="nav-brand-link">

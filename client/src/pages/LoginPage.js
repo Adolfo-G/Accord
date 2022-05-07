@@ -1,7 +1,6 @@
 import { Button } from '@material-ui/core';
 import React from 'react';
 import { useState } from 'react';
-import '../App.css';
 import { auth, provider } from '../firebase';
 import ModalDialog from '../components/FormPopup';
 

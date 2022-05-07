@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../features/userSlice';
 import '../App.css';
 
 const Profile = () => {
-  const user = useSelector(selectUser);
-
   return (
     <div className="profile">
       <div className="profile__picture">
-        <img src={user.photo} />
+        
         <div className="profile__userInfo">
-          {user.displayName}
-          <div>#{user.uid.substring(0, 5)}</div>
+          
+          <div>#</div>
         </div>
       </div>
 
@@ -30,7 +26,7 @@ const Profile = () => {
 
         <form>
           <label>
-            Email: {user.email}
+            Email:
             <div>
               <input type="text" placeholder="Edit" />
             </div>

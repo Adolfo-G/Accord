@@ -6,7 +6,7 @@ import { AddPostForm } from '../components/PostForm'
 
 function HomePage() {
   return (
-    <div class="container">
+    <div className="container">
       <div className="col-xs-12 col-sm-12 col-md-12 justify-content-center">
         <div className="main-picture contentBox">
           <h1>Hello World!</h1>

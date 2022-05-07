@@ -1,9 +1,6 @@
 import React from 'react';
 import './App.css';
 
-import { selectUser } from './features/userSlice';
-import { useDispatch, useSelector } from 'react-redux';
-
 import { useEffect } from 'react';
 import { auth } from './firebase';
 import { login, logout } from './features/userSlice';
@@ -48,35 +45,36 @@ const client = new ApolloClient({
 });
 
 function App() {
-  const dispatch = useDispatch();
-  const user = useSelector(selectUser);
+  // const dispatch = useDispatch();
+  // const user = useSelector(selectUser);
 
-  useEffect(() => {
-    auth.onAuthStateChanged((authUser) => {
-      console.log(authUser);
+  // useEffect(() => {
+  //   auth.onAuthStateChanged((authUser) => {
+  //     console.log(authUser);
 
-      if (authUser) {
-        dispatch(
-          login({
-            uid: authUser.uid,
-            photo: authUser.photoURL,
-            email: authUser.email,
-            displayName: authUser.displayName,
-          })
-        );
-      } else {
-        dispatch(logout());
-      }
-    });
-  }, [dispatch]);
+  //     if (authUser) {
+  //       dispatch(
+  //         login({
+  //           uid: authUser.uid,
+  //           photo: authUser.photoURL,
+  //           email: authUser.email,
+  //           displayName: authUser.displayName,
+  //         })
+  //       );
+  //     } else {
+  //       dispatch(logout());
+  //     }
+  //   });
+  // }, [dispatch]);
 
-  console.log(user);
+  // console.log(user);
 
   return (
     // <div className="app">
     //   {user ? (
+      <ApolloProvider client={client}>
     <Container fluid className="blog-app">
-      <Router basename="/Accord">
+      <Router>
         <Header />
         <Routes>
           <Route exact path="/" element={<LoginPage />} />
@@ -87,11 +85,10 @@ function App() {
         <Footer />
       </Router>
     </Container>
-    //   ) : (
-    //     <LoginPage />
-    //   )}
-    // </div>
+    </ApolloProvider>
+
   );
+  
 }
 
 export default App;

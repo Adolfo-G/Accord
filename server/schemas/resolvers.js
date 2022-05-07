@@ -1,5 +1,6 @@
 const { User} = require('../models');
 const { GraphQLScalarType, Kind } = require('graphql');
+const { signToken } = require('../utils/auth');
 
 const dateScalar = new GraphQLScalarType({
   name: 'Date',
@@ -26,15 +27,12 @@ const resolvers = {
     },
   },
   Mutation:{
-    createUser: async (parent, args) => {
-      const newUser = await User.create(args);
-      return newUser;
+    createUser: async (parent, { username, email, password }) => {
+      const user = await User.create({ username, email, password });
+      const token = signToken(user);
+      return { token, user };
     },
-    createChannel: async (parent, args) => {
-      const newChannel = await Channel.create(args);
-      return newChannel;
-    },
-  }
+  },
   
 };
 
