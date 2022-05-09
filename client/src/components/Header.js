@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../App.css';
 
 function Header() {
   return (
-    <div className="container">
-      <div className="col-xs-12 col-sm-12 col-md-12 justify-content-center">
+      <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-center header">
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark navBarStyle contentBox">
           <Link to="/" className="nav-brand-link">
             <p className="navbar-brand">Accord</p>
@@ -46,7 +46,6 @@ function Header() {
           </div>
         </nav>
       </div>
-    </div>
   );
 }
 

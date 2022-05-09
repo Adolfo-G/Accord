@@ -3,7 +3,7 @@ import '../App.css';
 
 const Profile = () => {
   return (
-    <div className="profile">
+    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-center profile">
       <div className="profile__picture">
         
         <div className="profile__userInfo">
