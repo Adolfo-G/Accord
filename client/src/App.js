@@ -73,19 +73,19 @@ function App() {
     // <div className="app">
     //   {user ? (
       <ApolloProvider client={client}>
-    <Container fluid className="blog-app">
-      <Router>
-        <Header />
-        <Routes>
-          <Route exact path="/" element={<LoginPage />} />
-          <Route exact path="/homepage" element={<HomePage />} />
-          <Route exact path="/page/profile" element={<ProfilePage />} />
-          <Route exact path="/page/chat" element={<ChatPage />} />
-        </Routes>
-        <Footer />
-      </Router>
-    </Container>
-    </ApolloProvider>
+      <Container fluid className="blog-app">
+        <Router>
+          <Header />
+          <Routes>
+            <Route exact path="/" element={<LoginPage />} />
+            <Route exact path="/homepage" element={<HomePage />} />
+            <Route exact path="/page/profile" element={<ProfilePage />} />
+            <Route exact path="/page/chat" element={<ChatPage />} />
+          </Routes>
+          <Footer />
+        </Router>
+      </Container>
+      </ApolloProvider>
 
   );
   
