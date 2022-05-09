@@ -6,6 +6,7 @@ import { AddPostForm } from '../components/PostForm';
 import butter1 from '../assets/img/megumi-nachev-xhOUnxVVb6s-unsplash.jpg';
 import butter2 from '../assets/img/sorin-gheorghita-094mP_CBdpM-unsplash.jpg';
 import butter3 from '../assets/img/sorin-gheorghita-nnRdjlAhShI-unsplash.jpg';
+import butter4 from '../assets/img/brett-jordan-YyzYbcIw3VE-unsplash.jpg';
 import '../App.css';
 
 function HomePage() {
@@ -53,17 +54,62 @@ function HomePage() {
           </div>
         </div>
 
-        <div className="card mb-3">
-        <img src="..." class="card-img-top" alt="..."></img>
-          <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+
+          <div class="col">
+            <div className="card home__blogPost">
+              <div className="home__postUser"> Username </div>
+              <img src={butter4} class="card-img-top" alt="..."></img>
+              <div className="card-body">
+                <h5 className="card-title">Post title</h5>
+                <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
           </div>
+
+          <div class="col">
+            <div className="card home__blogPost">
+              <div className="home__postUser"> Username </div>
+              <img src={butter4} class="card-img-top" alt="..."></img>
+              <div className="card-body">
+                <h5 className="card-title">Post title</h5>
+                <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div className="card home__blogPost">
+              <div className="home__postUser"> Username </div>
+              <img src={butter4} class="card-img-top" alt="..."></img>
+              <div className="card-body">
+                <h5 className="card-title">Post title</h5>
+                <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div className="card home__blogPost">
+              <div className="home__postUser"> Username </div>
+              <img src={butter4} class="card-img-top" alt="..."></img>
+              <div className="card-body">
+                <h5 className="card-title">Post title</h5>
+                <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+
         </div>
+
+        
 
       </div>
   );
-}
+};
 
 export default HomePage;

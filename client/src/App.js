@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 
 import { useEffect } from 'react';
 import { auth } from './firebase';
@@ -13,6 +12,7 @@ import HomePage from './pages/HomePage'; //blog
 import LoginPage from './pages/LoginPage';
 import ChatPage from './pages/ChatPage';
 import ProfilePage from './pages/ProfilePage';
+import './App.css';
 
 //apollo
 import {
@@ -73,7 +73,7 @@ function App() {
     // <div className="app">
     //   {user ? (
       <ApolloProvider client={client}>
-      <Container fluid className="blog-app">
+      <Container fluid className="app">
         <Router>
           <Header />
           <Routes>
