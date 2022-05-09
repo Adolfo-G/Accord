@@ -1,20 +1,27 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { PostsList } from '../components/PostList';
-import { Post } from '../components/Post';
-import { AddPostForm } from '../components/PostForm'
+import React from 'react';
+import { useQuery } from '@apollo/client';
 
-function HomePage() {
+import PostList from '../components/PostList';
+
+import { QUERY_THOUGHTS } from '../utils/queries';
+
+const Home = () => {
+  const { loading, data } = useQuery(QUERY_THOUGHTS);
+  const thoughts = data?.thoughts || [];
+
   return (
-    <div class="container">
-      <div className="col-xs-12 col-sm-12 col-md-12 justify-content-center">
-        <div className="main-picture contentBox">
-          <h1>Hello World!</h1>
-        </div>
-        <div className="content"></div>
-      </div>
-    </div>
-  );
-}
 
-export default HomePage;
+    <>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <PostList
+          thoughts={thoughts}
+        />
+      )}
+    </>
+
+  );
+};
+
+export default Home;
