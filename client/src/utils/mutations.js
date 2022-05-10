@@ -72,3 +72,19 @@ export const EDIT_THOUGHT = gql`
     }
   }
 `;
+
+export const REMOVE_THOUGHT = gql`
+  mutation removeThought($thoughtId:ID!) {
+    removeThought(thoughtId: $thoughtId) {
+      _id
+      thoughtText
+      thoughtBody
+      thoughtAuthor
+      createdAt
+      comments {
+        _id
+        commentText
+      }
+    }
+  }
+`;

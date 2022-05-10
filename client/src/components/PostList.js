@@ -1,12 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import p1 from '../assets/images/1.png'
-
+import Auth from '../utils/auth';
+import { useMutation } from '@apollo/client';
+import { REMOVE_THOUGHT } from '../utils/mutations';
 
 const ThoughtList = ({ thoughts, showEdit = false }) => {
+  const [removeThought, { error }] = useMutation(REMOVE_THOUGHT)
+  const RemoveThoughtFunction= async (tid)=>{
+      const { data } = await removeThought({
+        variables: {
+          thoughtId:tid,
+          thoughtAuthor: Auth.getProfile().data.username,
+        },
+      });
+      window.location.assign('/me')
+  }
   return (
     <div className='row'>
-
       {thoughts &&
         thoughts.map((thought) => (
           <div key={thought._id} className="card col-sm-6 col-md-4">
@@ -33,7 +44,10 @@ const ThoughtList = ({ thoughts, showEdit = false }) => {
                   >
                     <span className="btn btn-sm btn-primary ">Edit</span>
                   </Link>
-                  <button className="btn btn-sm btn-danger ml-auto">
+                  <button 
+                  className="btn btn-sm btn-danger ml-auto"
+                  onClick={()=>RemoveThoughtFunction(thought._id)}
+                  >
                     delete
                   </button>
                 </div>)}
