@@ -56,3 +56,11 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
+export const SINGLE_UPLOAD = gql`
+  mutation singleUpload($file: Upload!) {
+    singleUpload(file: $file) {
+      message
+    }
+  }
+`;
