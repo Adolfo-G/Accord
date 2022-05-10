@@ -56,3 +56,19 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
+export const EDIT_THOUGHT = gql`
+  mutation editThought($thoughtText: String!, $thoughtBody: String!, $thoughtId:ID!) {
+    editThought(thoughtText: $thoughtText, thoughtBody: $thoughtBody, thoughtId: $thoughtId) {
+      _id
+      thoughtText
+      thoughtBody
+      thoughtAuthor
+      createdAt
+      comments {
+        _id
+        commentText
+      }
+    }
+  }
+`;
