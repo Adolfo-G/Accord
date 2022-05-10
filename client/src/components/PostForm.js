@@ -11,6 +11,7 @@ import Auth from '../utils/auth';
 
 const PostForm = () => {
   const [thoughtText, setThoughtText] = useState('');
+  const [thoughtBody, setThoughtBody] = useState('');
 
   const [addThought, { error }] = useMutation(ADD_THOUGHT, {
     update(cache, { data: { addThought } }) {
@@ -41,12 +42,14 @@ const PostForm = () => {
       const { data } = await addThought({
         variables: {
           thoughtText,
+          thoughtBody,
           thoughtAuthor: Auth.getProfile().data.username,
         },
       });
 
       setThoughtText('');
-      window.location.assign('/');
+      setThoughtBody('');
+      window.location.assign('/')
     } catch (err) {
       console.error(err);
     }
@@ -57,6 +60,9 @@ const PostForm = () => {
 
     if (name === 'thoughtText' && value.length <= 280) {
       setThoughtText(value);
+    }
+    if (name === "post-content" && value.length <= 280){
+      setThoughtBody(value);
     }
   };
 
@@ -81,10 +87,11 @@ const PostForm = () => {
             </div>
             <div className="form-group">
               <label htmlFor="post-content">Body:</label>
-              <textarea
-                className="form-input"
-                id="post-content"
-                name="post-content"
+              <textarea className="form-input" 
+              id="post-content" 
+              name="post-content"
+              value = {thoughtBody}
+              onChange={handleChange}
               ></textarea>
             </div>
 
