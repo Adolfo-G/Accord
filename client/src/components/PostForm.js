@@ -6,6 +6,7 @@ import UploadFile from './UploadFile';
 
 import { ADD_THOUGHT } from '../utils/mutations';
 import { QUERY_THOUGHTS, QUERY_ME } from '../utils/queries';
+import axios from 'axios';
 
 import Auth from '../utils/auth';
 
