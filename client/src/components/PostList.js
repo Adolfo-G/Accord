@@ -1,11 +1,47 @@
-//render multiple post after login
-import React, { useEffect } from 'react';
-import Post from './Post';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import p1 from '../assets/images/1.png'
 
-const PostsList = () => {
+
+const ThoughtList = ({
+  thoughts,
+  showEdit = false
+}) => {
+
+
   return (
-    <h1>post list</h1>
-  );
-  };
+    <div className='row'>
 
-  export default PostsList
+      {thoughts &&
+        thoughts.map((thought) => (
+          <div key={thought._id} className="card col-sm-6 col-md-4">
+            <div className="card-body">
+              <Link
+                to={`/thoughts/${thought._id}`}
+              >  <img className="img" src={p1} /></Link>
+              <p className="post-info">
+                <span>
+                  {thought.thoughtAuthor}</span><span>
+                  {thought.createdAt}</span>
+              </p>
+              <Link
+                className="post-title"
+                to={`/thoughts/${thought._id}`}
+              > <span className="text">{thought.thoughtText}</span></Link>
+              <p className="post-body">
+                He glanced around to check if the treacherous gods
+                had really given him the reward promised for his accomplished song
+                and there she was, Eurydice restored, perfectly naked and fleshed
+                in her rhyming body again, the upper and lower smiles and eyes,
+              </p>
+              {showEdit && (<div className="post-edit"><Link to='/editPost'><span className="btn btn-sm btn-primary ">Edit</span></Link><button className="btn btn-sm btn-danger ml-auto">delete</button></div>)}
+            </div>
+
+          </div>
+        ))
+      }
+    </div >
+  );
+};
+
+export default ThoughtList;

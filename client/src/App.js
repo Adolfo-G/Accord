@@ -1,94 +1,85 @@
 import React from 'react';
-
-import { useEffect } from 'react';
-import { auth } from './firebase';
-import { login, logout } from './features/userSlice';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-
-import Header from './components/Header';
-import Footer from './components/Footer';
-import HomePage from './pages/HomePage'; //blog
-import LoginPage from './pages/LoginPage';
-import ChatPage from './pages/ChatPage';
-import ProfilePage from './pages/ProfilePage';
-import './App.css';
-
-//apollo
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  HttpLink,
-  from,
+  createHttpLink,
 } from '@apollo/client';
-import { onError } from '@apollo/client/link/error';
+import { setContext } from '@apollo/client/link/context';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-//to check errors from graphql
-const errorLink = onError(({ graphqlErrors, networkError }) => {
-  if (graphqlErrors) {
-    graphqlErrors.map(({ message, location, path }) => {
-      alert(`Graphql error ${message}`);
-    });
-  }
+import Homepage from './pages/Homepage';
+import SignUpForm from './components/SignUpForm';
+import LoginPage from './pages/LoginPage';
+import Post from './components/Post';
+import ProfilePage from './pages/ProfilePage';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import AddPost from './pages/AddPost';
+
+// Construct our main GraphQL API endpoint
+const httpLink = createHttpLink({
+  uri: '/graphql',
 });
 
-const link = from([
-  errorLink,
-  new HttpLink({ uri: 'http://localhost:3001/graphql' }),
-]);
+// Construct request middleware that will attach the JWT token to every request as an `authorization` header
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('id_token');
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
 
 const client = new ApolloClient({
-  uri: '/graphql',
+  // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
-  link: link,
 });
 
 function App() {
-  // const dispatch = useDispatch();
-  // const user = useSelector(selectUser);
-
-  // useEffect(() => {
-  //   auth.onAuthStateChanged((authUser) => {
-  //     console.log(authUser);
-
-  //     if (authUser) {
-  //       dispatch(
-  //         login({
-  //           uid: authUser.uid,
-  //           photo: authUser.photoURL,
-  //           email: authUser.email,
-  //           displayName: authUser.displayName,
-  //         })
-  //       );
-  //     } else {
-  //       dispatch(logout());
-  //     }
-  //   });
-  // }, [dispatch]);
-
-  // console.log(user);
-
   return (
-    // <div className="app">
-    //   {user ? (
-      <ApolloProvider client={client}>
-      <Container fluid className="app">
-        <Router>
+    <ApolloProvider client={client}>
+      <Router>
+        <div className="flex-column justify-flex-start min-100-vh">
           <Header />
-          <Routes>
-            <Route exact path="/" element={<LoginPage />} />
-            <Route exact path="/homepage" element={<HomePage />} />
-            <Route exact path="/page/profile" element={<ProfilePage />} />
-            <Route exact path="/page/chat" element={<ChatPage />} />
-          </Routes>
+          <div className="container">
+            <Routes>
+              <Route
+                path="/"
+                element={<Homepage />}
+              />
+              <Route
+                path="/login"
+                element={<LoginPage />}
+              />
+              <Route
+                path="/signup"
+                element={<SignUpForm />}
+              />
+              <Route
+                path="/me"
+                element={<ProfilePage />}
+              />
+              <Route
+                path="/addpost"
+                element={<AddPost />}
+              />
+              <Route
+                path="/thoughts/:thoughtId"
+                element={<Post />}
+              />
+            </Routes>
+          </div>
           <Footer />
-        </Router>
-      </Container>
-      </ApolloProvider>
-
+        </div>
+      </Router>
+    </ApolloProvider>
   );
-  
 }
 
 export default App;

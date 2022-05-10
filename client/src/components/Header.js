@@ -1,52 +1,46 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import '../App.css';
 
-function Header() {
+import Auth from '../utils/auth';
+
+const Header = () => {
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+    window.location.assign('/')
+  };
   return (
-      <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-center header">
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark navBarStyle contentBox">
-          <Link to="/" className="nav-brand-link">
-            <p className="navbar-brand">Accord</p>
+    <header className="flex-row align-center custom-header">
+      <div className="container flex-row justify-space-between-lg justify-center align-center">
+        <div>
+          <Link className="text-logo" to="/">
+            <h1 className="m-0">Accord</h1>
           </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav" id="portfolioNav">
-              <li className="nav-item">
-                <Link to="/homepage" className="nav-link">
-                  <p>Home</p>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/page/chat" className="nav-link">
-                  <p>Chat</p>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/page/profile" className="nav-link">
-                  <p>Profile</p>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/resumepage" className="nav-link">
-                  <p></p>
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
+
+        </div>
+        <div className="nav">
+          {Auth.loggedIn() ? (
+            <>
+              <Link className="" to="/me">
+                My Posts   /  </Link>
+              <button className="btn-a" onClick={logout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link className="btn btn-lg btn-info m-2" to="/login">
+                Login
+              </Link>
+              <Link className="btn btn-lg btn-light m-2" to="/signup">
+                Signup
+              </Link>
+            </>
+          )}
+        </div>
       </div>
+    </header>
   );
-}
+};
 
 export default Header;
