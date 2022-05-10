@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import UploadFile from './UploadFile';
 
+
 import { ADD_THOUGHT } from '../utils/mutations';
 import { QUERY_THOUGHTS, QUERY_ME } from '../utils/queries';
 
@@ -94,6 +95,7 @@ const PostForm = () => {
                 onChange={handleChange}
               ></textarea>
             </div>
+
             <div className="form-group">
               <label>Upload Image</label>
               <div className="custom-file">
@@ -101,7 +103,6 @@ const PostForm = () => {
                   type="file"
                   className="custom-file-input"
                   id="image"
-                  onClick={UploadFile()}
                 />
                 <label className="custom-file-label">Choose File</label>
               </div>
