@@ -3,12 +3,7 @@ import { Link } from 'react-router-dom';
 import p1 from '../assets/images/1.png'
 
 
-const ThoughtList = ({
-  thoughts,
-  showEdit = false
-}) => {
-
-
+const ThoughtList = ({thoughts,showEdit = false}) => {
   return (
     <div className='row'>
 
@@ -29,10 +24,7 @@ const ThoughtList = ({
                 to={`/thoughts/${thought._id}`}
               > <span className="text">{thought.thoughtText}</span></Link>
               <p className="post-body">
-                He glanced around to check if the treacherous gods
-                had really given him the reward promised for his accomplished song
-                and there she was, Eurydice restored, perfectly naked and fleshed
-                in her rhyming body again, the upper and lower smiles and eyes,
+               {thought.thoughtBody}
               </p>
               {showEdit && (<div className="post-edit"><Link to='/editPost'><span className="btn btn-sm btn-primary ">Edit</span></Link><button className="btn btn-sm btn-danger ml-auto">delete</button></div>)}
             </div>
