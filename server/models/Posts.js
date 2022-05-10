@@ -9,6 +9,12 @@ const thoughtSchema = new Schema({
     maxlength: 280,
     trim: true,
   },
+  thoughtBody: {
+    type: String,
+    minlength: 1,
+    maxlength: 280,
+    trim: true,
+  },
   thoughtAuthor: {
     type: String,
     required: true,
