@@ -52,6 +52,11 @@ const typeDefs = gql`
     removeComment(thoughtId: ID!, commentId: ID!): Thought
     singleUpload(file: Upload!): SuccessMessage
     multipleUpload(file: [Upload]!): SuccessMessage
+    editThought(
+      thoughtText: String!
+      thoughtBody: String!
+      thoughtId: ID!
+    ): Thought
   }
 `;
 
