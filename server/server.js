@@ -2,6 +2,10 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
+const {
+  GraphQLUpload,
+  graphqlUploadExpress, 
+} = require('graphql-upload');
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
@@ -28,6 +32,7 @@ app.get('/', (req, res) => {
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
+  app.use(graphqlUploadExpress());
   server.applyMiddleware({ app });
   
   db.once('open', () => {

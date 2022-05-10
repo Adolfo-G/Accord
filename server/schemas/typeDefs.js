@@ -1,6 +1,7 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+  scalar Upload
   type User {
     _id: ID
     username: String
@@ -25,6 +26,12 @@ const typeDefs = gql`
     createdAt: String
   }
 
+  type File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -36,6 +43,7 @@ const typeDefs = gql`
     thoughts(username: String): [Thought]
     thought(thoughtId: ID!): Thought
     me: User
+    uploads: [File]
   }
 
   type Mutation {
@@ -45,6 +53,7 @@ const typeDefs = gql`
     addComment(thoughtId: ID!, commentText: String!): Thought
     removeThought(thoughtId: ID!): Thought
     removeComment(thoughtId: ID!, commentId: ID!): Thought
+    singleUpload(file: Upload!): File!
   }
 `;
 
