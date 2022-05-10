@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import p1 from '../assets/images/1.png'
 
 
-const ThoughtList = ({thoughts,showEdit = false}) => {
+const ThoughtList = ({ thoughts, showEdit = false }) => {
   return (
     <div className='row'>
 
@@ -24,11 +24,20 @@ const ThoughtList = ({thoughts,showEdit = false}) => {
                 to={`/thoughts/${thought._id}`}
               > <span className="text">{thought.thoughtText}</span></Link>
               <p className="post-body">
-               {thought.thoughtBody}
               </p>
-              {showEdit && (<div className="post-edit"><Link to='/editPost'><span className="btn btn-sm btn-primary ">Edit</span></Link><button className="btn btn-sm btn-danger ml-auto">delete</button></div>)}
+              {showEdit && (
+                <div className="post-edit">
+                  <Link 
+                  to='/editpost'
+                  state={{thoughtId:thought._id}}
+                  >
+                    <span className="btn btn-sm btn-primary ">Edit</span>
+                  </Link>
+                  <button className="btn btn-sm btn-danger ml-auto">
+                    delete
+                  </button>
+                </div>)}
             </div>
-
           </div>
         ))
       }

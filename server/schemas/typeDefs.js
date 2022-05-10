@@ -45,6 +45,7 @@ const typeDefs = gql`
     addComment(thoughtId: ID!, commentText: String!): Thought
     removeThought(thoughtId: ID!): Thought
     removeComment(thoughtId: ID!, commentId: ID!): Thought
+    editThought(thoughtText: String!, thoughtBody: String!, thoughtId:ID!):Thought
   }
 `;
 

@@ -65,6 +65,18 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    editThought: async (parent, { thoughtText, thoughtBody, thoughtId }, context) => {
+        const UpdatedPost = await Thought.findOneAndUpdate(
+          { _id: thoughtId },
+          {
+              thoughtText: thoughtText,
+              thoughtBody: thoughtBody
+          },
+          {new:true}
+        );
+
+        return UpdatedPost;
+    },
     addComment: async (parent, { thoughtId, commentText }, context) => {
       if (context.user) {
         return Thought.findOneAndUpdate(

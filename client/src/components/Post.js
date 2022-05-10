@@ -37,15 +37,7 @@ const SingleThought = () => {
           </span>
         </p>
         <div className="article-img"><img className="img" src={p1} /></div>
-        <p className="article-body">In October of 1871, the oldest University in Nashville TN, teetered on the brink of collapse. To survive, Fisk University staked its last $40 on a set of field hymns and 10 descendants of American slavery. The singing group carried melodies their families shared in secret from the cotton fields of middle Tennessee to the high court of the Queen of England. The landmark tours of the Fisk Jubilee Singers rescued a university, gave Nashville its identity, and set the course of American music.
-
-          One hundred fifty years later the journey of the Fisk Jubilee Singers continues. Immerse yourself in the music and voices of the original chorus and hear how their stories are transformed through poetry in this one-hour special “Three Castles and the Music City.”
-
-          Produced in partnership with Nashville Public Radio [WPLN]
-          Hosted by: Destiny Birdsong
-          Co-Written and Produced by: Joshua Moore and Colleen Phelps
-          Editing by: Anita Bugg
-          Transcription by: Ayinde Jean-Baptiste</p>
+        <p className="article-body">{thought.thoughtBody}</p>
 
       </div>
 
