@@ -1,8 +1,14 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Thought } = require('../models');
 const { signToken } = require('../utils/auth');
+const { GraphQLUpload } = require('graphql-upload');
+const { readFile } = require('../utils/file');
+const { SingleFile } = require('../models/SingleUpload');
+const { MultipleFile } = require('../models/MutipleUpload');
 
 const resolvers = {
+  Upload: GraphQLUpload,
+
   Query: {
     users: async () => {
       return User.find().populate('thoughts');
@@ -114,6 +120,23 @@ const resolvers = {
         );
       }
       throw new AuthenticationError('You need to be logged in!');
+    },
+    singleUpload: async (_, { file }) => {
+      const imageUrl = await readFile(file);
+      const singlefile = new SingleFile({ image: imageUrl });
+      await singlefile.save();
+      return {
+        message: 'File uploaded successfully!',
+      };
+    },
+    multipleUpload: async (_, { file }) => {
+      const imageUrl = await multipleReadFile(file);
+      const multiplefile = new MultipleFile();
+      multiplefile.images.push(...imageUrl);
+      multiplefile.save();
+      return {
+        message: 'Multiple files uploaded successfully!',
+      };
     },
   },
 };
