@@ -34,7 +34,7 @@ const ThoughtList = ({ thoughts, showEdit = false }) => {
                 className="post-title"
                 to={`/thoughts/${thought._id}`}
               > <span className="text">{thought.thoughtText}</span></Link>
-              <p className="post-body">
+              <p className="post-body">{thought.thoughtBody}
               </p>
               {showEdit && (
                 <div className="post-edit">
@@ -48,7 +48,7 @@ const ThoughtList = ({ thoughts, showEdit = false }) => {
                     className="btn btn-sm btn-danger ml-auto"
                     onClick={() => RemoveThoughtFunction(thought._id)}
                   >
-                    delete
+                    Delete
                   </button>
                 </div>)}
             </div>
