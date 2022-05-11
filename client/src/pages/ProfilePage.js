@@ -43,7 +43,7 @@ const Profile = () => {
         {!userParam ? `${user.username}'s Posts` : ''}
       </h2>
         <Link to='/addPost'><span className="btn btn-sm btn-primary ">+ Create Post</span></Link></div>
-      <div className="row">
+      <div>
         <PostList
           thoughts={user.thoughts}
           title={`${user.username}'s thoughts...`}

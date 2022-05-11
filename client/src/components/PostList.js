@@ -7,14 +7,14 @@ import { REMOVE_THOUGHT } from '../utils/mutations';
 
 const ThoughtList = ({ thoughts, showEdit = false }) => {
   const [removeThought, { error }] = useMutation(REMOVE_THOUGHT)
-  const RemoveThoughtFunction= async (tid)=>{
-      const { data } = await removeThought({
-        variables: {
-          thoughtId:tid,
-          thoughtAuthor: Auth.getProfile().data.username,
-        },
-      });
-      window.location.assign('/me')
+  const RemoveThoughtFunction = async (tid) => {
+    const { data } = await removeThought({
+      variables: {
+        thoughtId: tid,
+        thoughtAuthor: Auth.getProfile().data.username,
+      },
+    });
+    window.location.assign('/me')
   }
   return (
     <div className='row'>
@@ -38,15 +38,15 @@ const ThoughtList = ({ thoughts, showEdit = false }) => {
               </p>
               {showEdit && (
                 <div className="post-edit">
-                  <Link 
-                  to='/editpost'
-                  state={{thoughtId:thought._id}}
+                  <Link
+                    to='/editpost'
+                    state={{ thoughtId: thought._id }}
                   >
                     <span className="btn btn-sm btn-primary ">Edit</span>
                   </Link>
-                  <button 
-                  className="btn btn-sm btn-danger ml-auto"
-                  onClick={()=>RemoveThoughtFunction(thought._id)}
+                  <button
+                    className="btn btn-sm btn-danger ml-auto"
+                    onClick={() => RemoveThoughtFunction(thought._id)}
                   >
                     delete
                   </button>
