@@ -78,15 +78,15 @@ const EditPostForm = ({ props }) => {
 
 
             <div className="form-group">
-              <label>Title:</label>
-              <input name="thoughtText"
+
+              <input name="thoughtText" placeholder="Title"
                 value={thoughtText}
                 className="form-input"
                 onChange={handleChange} />
             </div>
             <div className="form-group">
-              <label htmlFor="post-content">Body:</label>
-              <textarea className="form-input"
+
+              <textarea className="form-input" placeholder="Body"
                 id="post-content"
                 name="post-content"
                 value={thoughtBody}
@@ -94,10 +94,10 @@ const EditPostForm = ({ props }) => {
               ></textarea>
             </div>
             <div className="form-group">
-              <label>Upload Image</label>
+
               <div className="custom-file">
-                <input type="file" className="custom-file-input" id="image" />
-                <label className="custom-file-label">Choose File</label>
+                <label className="upload">Upload Image: </label> <input type="file" className="custom-file-input" id="image" />
+
               </div></div>
 
             <div className="post-submit">
