@@ -5,6 +5,8 @@ import { useMutation } from '@apollo/client';
 import { ADD_THOUGHT } from '../utils/mutations';
 import { QUERY_THOUGHTS, QUERY_ME } from '../utils/queries';
 
+import { SINGLE_UPLOAD } from '../utils/mutations';
+
 import Auth from '../utils/auth';
 
 const PostForm = () => {
@@ -47,7 +49,7 @@ const PostForm = () => {
 
       setThoughtText('');
       setThoughtBody('');
-      window.location.assign('/')
+      window.location.assign('/');
     } catch (err) {
       console.error(err);
     }
@@ -59,7 +61,11 @@ const PostForm = () => {
     if (name === 'thoughtText' && value.length <= 280) {
       setThoughtText(value);
     }
+<<<<<<< HEAD
     if (name === "post-content" && value.length <= 280) {
+=======
+    if (name === 'post-content' && value.length <= 280) {
+>>>>>>> 62fcdf7186769e0d21999ed36f255c109692b1d9
       setThoughtBody(value);
     }
   };
@@ -70,35 +76,41 @@ const PostForm = () => {
 
       {Auth.loggedIn() ? (
         <>
-
           <form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
           >
-
-
             <div className="form-group">
               <label>Title:</label>
-              <input name="thoughtText"
+              <input
+                name="thoughtText"
                 value={thoughtText}
                 className="form-input"
-                onChange={handleChange} />
+                onChange={handleChange}
+              />
             </div>
             <div className="form-group">
               <label htmlFor="post-content">Body:</label>
+<<<<<<< HEAD
               <textarea className="form-input"
+=======
+              <textarea
+                className="form-input"
+>>>>>>> 62fcdf7186769e0d21999ed36f255c109692b1d9
                 id="post-content"
                 name="post-content"
                 value={thoughtBody}
                 onChange={handleChange}
               ></textarea>
             </div>
+
             <div className="form-group">
               <label>Upload Image</label>
               <div className="custom-file">
                 <input type="file" className="custom-file-input" id="image" />
                 <label className="custom-file-label">Choose File</label>
-              </div></div>
+              </div>
+            </div>
 
             <div className="col-12">
               <button className="btn btn-primary btn-block py-3" type="submit">
