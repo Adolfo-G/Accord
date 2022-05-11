@@ -65,6 +65,14 @@ export const SINGLE_UPLOAD = gql`
   }
 `;
 
+export const MULTIPLE_UPLOAD = gql`
+  mutation multipleUpload($file: [Upload]!) {
+    multipleUpload(file: $file) {
+      message
+    }
+  }
+`;
+
 export const EDIT_THOUGHT = gql`
   mutation editThought(
     $thoughtText: String!

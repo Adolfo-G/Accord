@@ -3,6 +3,7 @@ const { User, Thought } = require('../models');
 const { signToken } = require('../utils/auth');
 const { GraphQLUpload } = require('graphql-upload');
 const { readFile } = require('../utils/file');
+const { multipleReadFile } = require('../utils/file');
 const { SingleFile } = require('../models/SingleUpload');
 const { MultipleFile } = require('../models/MutipleUpload');
 
@@ -71,17 +72,21 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    editThought: async (parent, { thoughtText, thoughtBody, thoughtId }, context) => {
-        const UpdatedPost = await Thought.findOneAndUpdate(
-          { _id: thoughtId },
-          {
-              thoughtText: thoughtText,
-              thoughtBody: thoughtBody
-          },
-          {new:true}
-        );
+    editThought: async (
+      parent,
+      { thoughtText, thoughtBody, thoughtId },
+      context
+    ) => {
+      const UpdatedPost = await Thought.findOneAndUpdate(
+        { _id: thoughtId },
+        {
+          thoughtText: thoughtText,
+          thoughtBody: thoughtBody,
+        },
+        { new: true }
+      );
 
-        return UpdatedPost;
+      return UpdatedPost;
     },
     addComment: async (parent, { thoughtId, commentText }, context) => {
       if (context.user) {
@@ -145,7 +150,7 @@ const resolvers = {
       const imageUrl = await multipleReadFile(file);
       const multiplefile = new MultipleFile();
       multiplefile.images.push(...imageUrl);
-      multiplefile.save();
+      await multiplefile.save();
       return {
         message: 'Multiple files uploaded successfully!',
       };
