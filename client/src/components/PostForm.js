@@ -5,6 +5,8 @@ import { useMutation } from '@apollo/client';
 import { ADD_THOUGHT } from '../utils/mutations';
 import { QUERY_THOUGHTS, QUERY_ME } from '../utils/queries';
 
+import { SINGLE_UPLOAD } from '../utils/mutations';
+
 import Auth from '../utils/auth';
 
 const PostForm = () => {
