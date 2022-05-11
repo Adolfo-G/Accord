@@ -10,17 +10,7 @@ const Home = () => {
   const thoughts = data?.thoughts || [];
 
   return (
-
-    <>
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        <PostList
-          thoughts={thoughts}
-        />
-      )}
-    </>
-
+    <>{loading ? <div>Loading...</div> : <PostList thoughts={thoughts} />}</>
   );
 };
 

@@ -50,34 +50,13 @@ function App() {
           <Header />
           <div className="container">
             <Routes>
-              <Route
-                path="/"
-                element={<Homepage />}
-              />
-              <Route
-                path="/login"
-                element={<LoginPage />}
-              />
-              <Route
-                path="/signup"
-                element={<SignUpForm />}
-              />
-              <Route
-                path="/me"
-                element={<ProfilePage />}
-              />
-              <Route
-                path="/addpost"
-                element={<AddPost />}
-              />
-               <Route
-                path="/editpost"
-                element={<EditPost />}
-              />
-              <Route
-                path="/thoughts/:thoughtId"
-                element={<Post />}
-              />
+              <Route path="/" element={<Homepage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignUpForm />} />
+              <Route path="/me" element={<ProfilePage />} />
+              <Route path="/addpost" element={<AddPost />} />
+              <Route path="/editpost" element={<EditPost />} />
+              <Route path="/thoughts/:thoughtId" element={<Post />} />
             </Routes>
           </div>
           <Footer />

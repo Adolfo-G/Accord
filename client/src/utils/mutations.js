@@ -57,9 +57,33 @@ export const ADD_COMMENT = gql`
   }
 `;
 
+export const SINGLE_UPLOAD = gql`
+  mutation singleUpload($file: Upload!) {
+    singleUpload(file: $file) {
+      message
+    }
+  }
+`;
+
+export const MULTIPLE_UPLOAD = gql`
+  mutation multipleUpload($file: [Upload]!) {
+    multipleUpload(file: $file) {
+      message
+    }
+  }
+`;
+
 export const EDIT_THOUGHT = gql`
-  mutation editThought($thoughtText: String!, $thoughtBody: String!, $thoughtId:ID!) {
-    editThought(thoughtText: $thoughtText, thoughtBody: $thoughtBody, thoughtId: $thoughtId) {
+  mutation editThought(
+    $thoughtText: String!
+    $thoughtBody: String!
+    $thoughtId: ID!
+  ) {
+    editThought(
+      thoughtText: $thoughtText
+      thoughtBody: $thoughtBody
+      thoughtId: $thoughtId
+    ) {
       _id
       thoughtText
       thoughtBody
