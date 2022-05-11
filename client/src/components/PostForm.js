@@ -67,7 +67,7 @@ const PostForm = () => {
   };
 
   return (
-    <div>
+    <div className="post-form">
       <h3>My Post</h3>
 
       {Auth.loggedIn() ? (
@@ -104,7 +104,7 @@ const PostForm = () => {
               </div>
             </div>
 
-            <div className="col-12">
+            <div className="post-submit">
               <button className="btn btn-primary btn-block py-3" type="submit">
                 Create
               </button>

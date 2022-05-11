@@ -7,7 +7,7 @@ import { QUERY_THOUGHTS, QUERY_ME } from '../utils/queries';
 
 import Auth from '../utils/auth';
 
-const EditPostForm = ({props}) => {
+const EditPostForm = ({ props }) => {
   const [thoughtText, setThoughtText] = useState('');
   const [thoughtBody, setThoughtBody] = useState('');
 
@@ -41,7 +41,7 @@ const EditPostForm = ({props}) => {
         variables: {
           thoughtText,
           thoughtBody,
-          thoughtId:props
+          thoughtId: props
         },
       });
 
@@ -59,13 +59,13 @@ const EditPostForm = ({props}) => {
     if (name === 'thoughtText' && value.length <= 280) {
       setThoughtText(value);
     }
-    if (name === "post-content" && value.length <= 280){
+    if (name === "post-content" && value.length <= 280) {
       setThoughtBody(value);
     }
   };
 
   return (
-    <div>
+    <div className="post-edit">
       <h3>My Post</h3>
 
       {Auth.loggedIn() ? (
@@ -86,11 +86,11 @@ const EditPostForm = ({props}) => {
             </div>
             <div className="form-group">
               <label htmlFor="post-content">Body:</label>
-              <textarea className="form-input" 
-              id="post-content" 
-              name="post-content"
-              value = {thoughtBody}
-              onChange={handleChange}
+              <textarea className="form-input"
+                id="post-content"
+                name="post-content"
+                value={thoughtBody}
+                onChange={handleChange}
               ></textarea>
             </div>
             <div className="form-group">
@@ -100,7 +100,7 @@ const EditPostForm = ({props}) => {
                 <label className="custom-file-label">Choose File</label>
               </div></div>
 
-            <div className="col-12">
+            <div className="post-submit">
               <button className="btn btn-primary btn-block py-3" type="submit">
                 Save
               </button>
