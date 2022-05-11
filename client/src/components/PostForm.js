@@ -59,13 +59,13 @@ const PostForm = () => {
     if (name === 'thoughtText' && value.length <= 280) {
       setThoughtText(value);
     }
-    if (name === "post-content" && value.length <= 280){
+    if (name === "post-content" && value.length <= 280) {
       setThoughtBody(value);
     }
   };
 
   return (
-    <div>
+    <div className="post-form">
       <h3>My Post</h3>
 
       {Auth.loggedIn() ? (
@@ -86,11 +86,11 @@ const PostForm = () => {
             </div>
             <div className="form-group">
               <label htmlFor="post-content">Body:</label>
-              <textarea className="form-input" 
-              id="post-content" 
-              name="post-content"
-              value = {thoughtBody}
-              onChange={handleChange}
+              <textarea className="form-input"
+                id="post-content"
+                name="post-content"
+                value={thoughtBody}
+                onChange={handleChange}
               ></textarea>
             </div>
             <div className="form-group">
