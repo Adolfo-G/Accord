@@ -17,13 +17,20 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_THOUGHTS = gql`
-  query getThoughts {
-    thoughts {
+  query{
+    getAllThoughts {
       _id
       thoughtText
       thoughtBody
       thoughtAuthor
       createdAt
+      comments {
+        _id
+        commentText
+        commentAuthor
+        createdAt
+        thoughtId
+      }
     }
   }
 `;
@@ -41,6 +48,7 @@ export const QUERY_SINGLE_THOUGHT = gql`
         commentText
         commentAuthor
         createdAt
+        thoughtId
       }
     }
   }
@@ -59,6 +67,29 @@ export const QUERY_ME = gql`
         thoughtAuthor
         createdAt
       }
+    }
+  }
+`;
+export const QUERY_COMMENTS = gql`
+  query getComments {
+    comments {
+      _id
+      commentText
+      commentAuthor
+      createdAt
+      thoughtId
+    }
+  }
+`;
+
+export const QUERY_SINGLE_COMMENT = gql`
+  query getSingleComment($commentId: ID!) {
+    comment(commenttId: $commentId) {
+      _id
+      commentText
+      commentAuthor
+      createdAt
+      thoughtId
     }
   }
 `;

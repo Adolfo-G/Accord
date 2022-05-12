@@ -35,24 +35,22 @@ export const ADD_THOUGHT = gql`
       comments {
         _id
         commentText
+        commentAuthor
+        createdAt
+        thoughtId
       }
     }
   }
 `;
 
 export const ADD_COMMENT = gql`
-  mutation addComment($thoughtId: ID!, $commentText: String!) {
-    addComment(thoughtId: $thoughtId, commentText: $commentText) {
-      _id
-      thoughtText
-      thoughtBody
-      thoughtAuthor
-      createdAt
-      comments {
+  mutation addComment($commentText: String!, $commentAuthor: String!, $thoughtId: String!) {
+    addComment(commentText: $commentText, commentAuthor: $commentAuthor, thoughtId: $thoughtId) {
         _id
         commentText
+        commentAuthor
         createdAt
-      }
+        thoughtId
     }
   }
 `;
@@ -92,6 +90,9 @@ export const EDIT_THOUGHT = gql`
       comments {
         _id
         commentText
+        commentAuthor
+        createdAt
+        thoughtId
       }
     }
   }
@@ -108,6 +109,9 @@ export const REMOVE_THOUGHT = gql`
       comments {
         _id
         commentText
+        commentAuthor
+        createdAt
+        thoughtId
       }
     }
   }

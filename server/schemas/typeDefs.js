@@ -24,6 +24,7 @@ const typeDefs = gql`
     commentText: String
     commentAuthor: String
     createdAt: String
+    thoughtId: String
   }
 
   type SuccessMessage {
@@ -38,25 +39,24 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(username: String!): User
-    thoughts(username: String): [Thought]
+    getAllThoughts: [Thought]
+    usersThoughts(username:String!): [Thought]
     thought(thoughtId: ID!): Thought
+    comments(username:String!): [Comment]
+    comment(commentId: ID!): Comment
     me: User
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
-    login(email: String!, password: String!): Auth
+    addComment(commentText: String!, commentAuthor: String!, thoughtId:String!): Comment
     addThought(thoughtText: String!, thoughtBody: String!): Thought
-    addComment(thoughtId: ID!, commentText: String!): Thought
+    editThought(thoughtText: String!, thoughtBody: String!, thoughtId: ID!): Thought
+    removeComment(thoughtId: ID!, commentId: ID!): Comment
     removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
-    singleUpload(file: Upload!): SuccessMessage
     multipleUpload(file: [Upload]!): SuccessMessage
-    editThought(
-      thoughtText: String!
-      thoughtBody: String!
-      thoughtId: ID!
-    ): Thought
+    singleUpload(file: Upload!): SuccessMessage
+    login(email: String!, password: String!): Auth
   }
 `;
 
