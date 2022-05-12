@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Thought } = require('../models');
+const { User, Thought, Comment } = require('../models');
 const { signToken } = require('../utils/auth');
 const { GraphQLUpload } = require('graphql-upload');
 const { readFile } = require('../utils/file');
@@ -17,18 +17,32 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('thoughts');
     },
-    thoughts: async (parent, { username }) => {
+    getAllThoughts: async () => {
+      const thoughts= await Thought.find().populate('comments').sort({ createdAt: -1 })
+      return thoughts
+    },
+    usersThoughts: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Thought.find(params).sort({ createdAt: -1 });
+      const thoughts= await Thought.find({
+        thoughtAuthor:username
+      }).populate('comments')
+      return thoughts
     },
     thought: async (parent, { thoughtId }) => {
-      return Thought.findOne({ _id: thoughtId });
+      return await Thought.findOne({ _id: thoughtId }).populate('comments');
     },
     me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id }).populate('thoughts');
       }
       throw new AuthenticationError('You need to be logged in!');
+    },
+    comments: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Comment.find(params).sort({ createdAt: -1 });
+    },
+    comment: async (parent, { commentId }) => {
+      return Comment.findOne({ _id: commentId });
     },
   },
 
@@ -88,20 +102,19 @@ const resolvers = {
 
       return UpdatedPost;
     },
-    addComment: async (parent, { thoughtId, commentText }, context) => {
+    addComment: async (parent, { commentText, commentAuthor, thoughtId }, context) => {
       if (context.user) {
-        return Thought.findOneAndUpdate(
-          { _id: thoughtId },
-          {
-            $addToSet: {
-              comments: { commentText, commentAuthor: context.user.username },
-            },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
+        const comment = await Comment.create({
+          commentText:commentText,
+          commentAuthor:commentAuthor,
+          thoughtId:thoughtId,
+      });
+      const thoughtData= await Thought.findOneAndUpdate(
+        { _id: thoughtId },
+        { $push: { comments: comment._id } },
+        {new:true}
+      );
+      return comment;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
