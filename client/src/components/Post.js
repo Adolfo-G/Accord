@@ -20,7 +20,6 @@ const SingleThought = () => {
   });
 
   const thought = data?.thought || {};
-
   if (loading) {
     return <div>Loading...</div>;
   }
