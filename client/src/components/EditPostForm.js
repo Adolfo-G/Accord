@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 
 import { EDIT_THOUGHT } from '../utils/mutations';
-import { QUERY_THOUGHTS, QUERY_ME } from '../utils/queries';
+import { QUERY_THOUGHTS, QUERY_ME, QUERY_SINGLE_THOUGHT } from '../utils/queries';
 
 import Auth from '../utils/auth';
 
@@ -64,7 +64,12 @@ const EditPostForm = ({ props }) => {
     }
   };
 
+  const {loading, data}=useQuery(QUERY_SINGLE_THOUGHT,{
+    variables:{thoughtId:props}
+  })
+
   return (
+    <> {loading ? <div>Loading...</div>:
     <div className="post-edit">
       <h3>My Post</h3>
 
@@ -79,14 +84,14 @@ const EditPostForm = ({ props }) => {
 
             <div className="form-group">
 
-              <input name="thoughtText" placeholder="Title"
+              <input name="thoughtText" placeholder={data.thought.thoughtText}
                 value={thoughtText}
                 className="form-input"
                 onChange={handleChange} />
             </div>
             <div className="form-group">
 
-              <textarea className="form-input" placeholder="Body"
+              <textarea className="form-input" placeholder={data.thought.thoughtBody}
                 id="post-content"
                 name="post-content"
                 value={thoughtBody}
@@ -118,7 +123,7 @@ const EditPostForm = ({ props }) => {
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
-    </div>
+    </div>}</>
   );
 };
 
