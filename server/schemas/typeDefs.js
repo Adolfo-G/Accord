@@ -1,7 +1,6 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  scalar Upload
   type User {
     _id: ID
     username: String
@@ -40,22 +39,28 @@ const typeDefs = gql`
     users: [User]
     user(username: String!): User
     getAllThoughts: [Thought]
-    usersThoughts(username:String!): [Thought]
+    usersThoughts(username: String!): [Thought]
     thought(thoughtId: ID!): Thought
-    comments(username:String!): [Comment]
+    comments(username: String!): [Comment]
     comment(commentId: ID!): Comment
     me: User
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
-    addComment(commentText: String!, commentAuthor: String!, thoughtId:String!): Comment
+    addComment(
+      commentText: String!
+      commentAuthor: String!
+      thoughtId: String!
+    ): Comment
     addThought(thoughtText: String!, thoughtBody: String!): Thought
-    editThought(thoughtText: String!, thoughtBody: String!, thoughtId: ID!): Thought
+    editThought(
+      thoughtText: String!
+      thoughtBody: String!
+      thoughtId: ID!
+    ): Thought
     removeComment(thoughtId: ID!, commentId: ID!): Comment
     removeThought(thoughtId: ID!): Thought
-    multipleUpload(file: [Upload]!): SuccessMessage
-    singleUpload(file: Upload!): SuccessMessage
     login(email: String!, password: String!): Auth
   }
 `;
