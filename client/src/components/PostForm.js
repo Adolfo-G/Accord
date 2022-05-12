@@ -96,7 +96,6 @@ const PostForm = () => {
 
             <div className="form-group">
               <div className="custom-file">
-                <label className="upload">Upload Image: </label>
                 <input type="file" className="custom-file-input" id="image" />
               </div>
             </div>
