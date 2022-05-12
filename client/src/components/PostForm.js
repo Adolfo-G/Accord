@@ -5,8 +5,6 @@ import { useMutation } from '@apollo/client';
 import { ADD_THOUGHT } from '../utils/mutations';
 import { QUERY_THOUGHTS, QUERY_ME } from '../utils/queries';
 
-import { SINGLE_UPLOAD } from '../utils/mutations';
-
 import Auth from '../utils/auth';
 
 const PostForm = () => {
@@ -77,17 +75,17 @@ const PostForm = () => {
             onSubmit={handleFormSubmit}
           >
             <div className="form-group">
-
               <input
-                name="thoughtText" placeholder="Title"
+                name="thoughtText"
+                placeholder="Title"
                 value={thoughtText}
                 className="form-input"
                 onChange={handleChange}
               />
             </div>
             <div className="form-group">
-
-              <textarea placeholder="Body"
+              <textarea
+                placeholder="Body"
                 className="form-input"
                 id="post-content"
                 name="post-content"
@@ -97,10 +95,9 @@ const PostForm = () => {
             </div>
 
             <div className="form-group">
-
               <div className="custom-file">
-                <label className="upload">Upload Image:   </label><input type="file" className="custom-file-input" id="image" />
-
+                <label className="upload">Upload Image: </label>
+                <input type="file" className="custom-file-input" id="image" />
               </div>
             </div>
 
