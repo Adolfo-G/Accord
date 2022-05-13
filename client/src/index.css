@@ -2069,3 +2069,22 @@ h3,
   font-size: 120%;
   letter-spacing: normal;
 }
+
+.footer-container{
+  text-align: center;
+}
+.foot-nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: inline-flex;
+}
+.nav-item a{
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+.nav-item a:hover{
+  color: #17A589;
+}
