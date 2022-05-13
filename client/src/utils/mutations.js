@@ -44,13 +44,21 @@ export const ADD_THOUGHT = gql`
 `;
 
 export const ADD_COMMENT = gql`
-  mutation addComment($commentText: String!, $commentAuthor: String!, $thoughtId: String!) {
-    addComment(commentText: $commentText, commentAuthor: $commentAuthor, thoughtId: $thoughtId) {
-        _id
-        commentText
-        commentAuthor
-        createdAt
-        thoughtId
+  mutation addComment(
+    $commentText: String!
+    $commentAuthor: String!
+    $thoughtId: String!
+  ) {
+    addComment(
+      commentText: $commentText
+      commentAuthor: $commentAuthor
+      thoughtId: $thoughtId
+    ) {
+      _id
+      commentText
+      commentAuthor
+      createdAt
+      thoughtId
     }
   }
 `;
@@ -63,22 +71,6 @@ export const REMOVE_COMMENT = gql`
         commentAuthor
         createdAt
         thoughtId
-    }
-  }
-`;
-
-export const SINGLE_UPLOAD = gql`
-  mutation singleUpload($file: Upload!) {
-    singleUpload(file: $file) {
-      message
-    }
-  }
-`;
-
-export const MULTIPLE_UPLOAD = gql`
-  mutation multipleUpload($file: [Upload]!) {
-    multipleUpload(file: $file) {
-      message
     }
   }
 `;
@@ -111,7 +103,7 @@ export const EDIT_THOUGHT = gql`
 `;
 
 export const REMOVE_THOUGHT = gql`
-  mutation removeThought($thoughtId:ID!) {
+  mutation removeThought($thoughtId: ID!) {
     removeThought(thoughtId: $thoughtId) {
       _id
       thoughtText

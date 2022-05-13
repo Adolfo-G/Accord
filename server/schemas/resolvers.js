@@ -1,15 +1,8 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Thought, Comment } = require('../models');
 const { signToken } = require('../utils/auth');
-const { GraphQLUpload } = require('graphql-upload');
-const { readFile } = require('../utils/file');
-const { multipleReadFile } = require('../utils/file');
-const { SingleFile } = require('../models/SingleUpload');
-const { MultipleFile } = require('../models/MutipleUpload');
 
 const resolvers = {
-  Upload: GraphQLUpload,
-
   Query: {
     users: async () => {
       return User.find().populate('thoughts');
@@ -18,15 +11,17 @@ const resolvers = {
       return User.findOne({ username }).populate('thoughts');
     },
     getAllThoughts: async () => {
-      const thoughts = await Thought.find().populate('comments').sort({ createdAt: -1 })
-      return thoughts
+      const thoughts = await Thought.find()
+        .populate('comments')
+        .sort({ createdAt: -1 });
+      return thoughts;
     },
     usersThoughts: async (parent, { username }) => {
       const params = username ? { username } : {};
       const thoughts = await Thought.find({
-        thoughtAuthor: username
-      }).populate('comments')
-      return thoughts
+        thoughtAuthor: username,
+      }).populate('comments');
+      return thoughts;
     },
     thought: async (parent, { thoughtId }) => {
       return await Thought.findOne({ _id: thoughtId }).populate('comments');
@@ -102,7 +97,11 @@ const resolvers = {
 
       return UpdatedPost;
     },
-    addComment: async (parent, { commentText, commentAuthor, thoughtId }, context) => {
+    addComment: async (
+      parent,
+      { commentText, commentAuthor, thoughtId },
+      context
+    ) => {
       if (context.user) {
         const comment = await Comment.create({
           commentText: commentText,
@@ -145,23 +144,6 @@ const resolvers = {
         );
       }
       throw new AuthenticationError('You need to be logged in!');
-    },
-    singleUpload: async (_, { file }) => {
-      const imageUrl = await readFile(file);
-      const singlefile = new SingleFile({ image: imageUrl });
-      await singlefile.save();
-      return {
-        message: 'File uploaded successfully!',
-      };
-    },
-    multipleUpload: async (_, { file }) => {
-      const imageUrl = await multipleReadFile(file);
-      const multiplefile = new MultipleFile();
-      multiplefile.images.push(...imageUrl);
-      await multiplefile.save();
-      return {
-        message: 'Multiple files uploaded successfully!',
-      };
     },
   },
 };
