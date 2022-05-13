@@ -3,7 +3,6 @@ const { User, Thought, Comment } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
-  Upload: GraphQLUpload,
 
   Query: {
     users: async () => {
