@@ -29,21 +29,21 @@ const Profile = () => {
 
   if (!user?.username) {
     return (
-      <h4>
-        You need to be logged in to see this. Use the navigation links above to
+      <p className="text-primary">
+        You need to be logged in to see this. Use the navigation links above to logout then
         sign up or log in!
-      </h4>
+      </p>
     );
   }
 
   return (
 
     <div className="content">
-      <div className="profile-header row"><h2 className="col-6">
+      <div className="profile-header row"><h2>
         {!userParam ? `${user.username}'s Posts` : ''}
       </h2>
         <Link to='/addPost'><span className="btn btn-sm btn-primary ">+ Create Post</span></Link></div>
-      <div className="row">
+      <div>
         <PostList
           thoughts={user.thoughts}
           title={`${user.username}'s thoughts...`}

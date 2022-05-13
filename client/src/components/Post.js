@@ -1,5 +1,19 @@
 import React from 'react';
 import p1 from '../assets/images/1.png'
+import p2 from '../assets/images/2.png'
+import p3 from '../assets/images/3.png'
+import p4 from '../assets/images/4.png'
+import p5 from '../assets/images/5.png'
+import p6 from '../assets/images/6.png'
+import p7 from '../assets/images/7.png'
+import p8 from '../assets/images/8.png'
+import p9 from '../assets/images/9.png'
+import p10 from '../assets/images/10.png'
+import p11 from '../assets/images/11.png'
+import p12 from '../assets/images/12.png'
+import p13 from '../assets/images/13.png'
+import p14 from '../assets/images/14.png'
+import p15 from '../assets/images/15.png'
 
 // Import the `useParams()` hook
 import { useParams } from 'react-router-dom';
@@ -11,6 +25,10 @@ import AddComment from '../components/AddComment';
 import { QUERY_SINGLE_THOUGHT } from '../utils/queries';
 
 const SingleThought = () => {
+  const randomImage=()=>{
+    const images=[p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15]
+    return images[Math.floor(Math.random() * 14)]
+  }
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
   const { thoughtId } = useParams();
 
@@ -20,7 +38,6 @@ const SingleThought = () => {
   });
 
   const thought = data?.thought || {};
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -36,16 +53,8 @@ const SingleThought = () => {
           <span>{thought.createdAt}
           </span>
         </p>
-        <div className="article-img"><img className="img" src={p1} /></div>
-        <p className="article-body">In October of 1871, the oldest University in Nashville TN, teetered on the brink of collapse. To survive, Fisk University staked its last $40 on a set of field hymns and 10 descendants of American slavery. The singing group carried melodies their families shared in secret from the cotton fields of middle Tennessee to the high court of the Queen of England. The landmark tours of the Fisk Jubilee Singers rescued a university, gave Nashville its identity, and set the course of American music.
-
-          One hundred fifty years later the journey of the Fisk Jubilee Singers continues. Immerse yourself in the music and voices of the original chorus and hear how their stories are transformed through poetry in this one-hour special “Three Castles and the Music City.”
-
-          Produced in partnership with Nashville Public Radio [WPLN]
-          Hosted by: Destiny Birdsong
-          Co-Written and Produced by: Joshua Moore and Colleen Phelps
-          Editing by: Anita Bugg
-          Transcription by: Ayinde Jean-Baptiste</p>
+        <div className="article-img"><img className="img" src={randomImage()} /></div>
+        <p className="article-body">{thought.thoughtBody}</p>
 
       </div>
 

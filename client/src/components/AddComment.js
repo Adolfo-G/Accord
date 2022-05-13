@@ -21,13 +21,14 @@ const CommentForm = ({ thoughtId }) => {
           thoughtId,
           commentText,
           commentAuthor: Auth.getProfile().data.username,
-        },
+        },       
       });
 
       setCommentText('');
     } catch (err) {
       console.error(err);
     }
+    window.location.reload()
   };
 
   const handleChange = (event) => {

@@ -35,14 +35,57 @@ export const ADD_THOUGHT = gql`
       comments {
         _id
         commentText
+        commentAuthor
+        createdAt
+        thoughtId
       }
     }
   }
 `;
 
 export const ADD_COMMENT = gql`
-  mutation addComment($thoughtId: ID!, $commentText: String!) {
-    addComment(thoughtId: $thoughtId, commentText: $commentText) {
+  mutation addComment(
+    $commentText: String!
+    $commentAuthor: String!
+    $thoughtId: String!
+  ) {
+    addComment(
+      commentText: $commentText
+      commentAuthor: $commentAuthor
+      thoughtId: $thoughtId
+    ) {
+      _id
+      commentText
+      commentAuthor
+      createdAt
+      thoughtId
+    }
+  }
+`;
+
+export const REMOVE_COMMENT = gql`
+  mutation removeComment($commentId: ID!) {
+    removeComment(commentId: $commentId) {
+        _id
+        commentText
+        commentAuthor
+        createdAt
+        thoughtId
+    }
+  }
+`;
+
+export const EDIT_THOUGHT = gql`
+  mutation editThought(
+    $thoughtText: String!
+    $thoughtBody: String!
+    $thoughtId: ID!
+  ) {
+    editThought(
+      thoughtText: $thoughtText
+      thoughtBody: $thoughtBody
+      thoughtId: $thoughtId
+    ) {
       _id
       thoughtText
       thoughtBody
@@ -51,7 +94,28 @@ export const ADD_COMMENT = gql`
       comments {
         _id
         commentText
+        commentAuthor
         createdAt
+        thoughtId
+      }
+    }
+  }
+`;
+
+export const REMOVE_THOUGHT = gql`
+  mutation removeThought($thoughtId: ID!) {
+    removeThought(thoughtId: $thoughtId) {
+      _id
+      thoughtText
+      thoughtBody
+      thoughtAuthor
+      createdAt
+      comments {
+        _id
+        commentText
+        commentAuthor
+        createdAt
+        thoughtId
       }
     }
   }

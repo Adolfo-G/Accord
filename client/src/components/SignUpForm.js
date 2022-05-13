@@ -25,7 +25,6 @@ const Signup = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
 
     try {
       const { data } = await addUser({
@@ -39,10 +38,10 @@ const Signup = () => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
+    <main className="flex-row justify-center mb-4 sign-up">
       <div className="col-12 col-lg-10">
         <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
+          <h4 className="card-header p-2">Sign Up</h4>
           <div className="card-body">
             {data ? (
               <p>
