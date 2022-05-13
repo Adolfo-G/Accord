@@ -59,7 +59,7 @@ const typeDefs = gql`
       thoughtBody: String!
       thoughtId: ID!
     ): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Comment
+    removeComment(commentId: ID!): Comment
     removeThought(thoughtId: ID!): Thought
     login(email: String!, password: String!): Auth
   }
