@@ -55,13 +55,14 @@ Accord is an fast and simple blog website that allows user to share their storie
 
 ### Screenshot:
 
-![Screenshot](assets/ScreenShot1.png)
-![Screenshot](assets/ScreenShot2.png)
+![Screenshot](client/src/assets/images/ScreenShot1.png)
+![Screenshot](client/src/assets/images/ScreenShot2.png)
+![Screenshot](client/src/assets/images/ScreenShot3.png)
 
 
 ### Deploy:
 
-- Under development 
+- https://enigmatic-reef-68574.herokuapp.com/
 
 ---
 
