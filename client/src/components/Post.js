@@ -45,7 +45,7 @@ const SingleThought = () => {
     <div className="single-post">
 
       <div className="article-container">
-        <h1 className="article-title">
+        <h1 className="article-title"> 
           {thought.thoughtText}
         </h1>
         <p className="article-info">

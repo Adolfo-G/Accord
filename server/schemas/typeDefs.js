@@ -1,6 +1,7 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+  scalar Upload
   type User {
     _id: ID
     username: String
@@ -30,6 +31,12 @@ const typeDefs = gql`
     message: String
   }
 
+  type File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -44,6 +51,7 @@ const typeDefs = gql`
     comments(username: String!): [Comment]
     comment(commentId: ID!): Comment
     me: User
+    uploads: [File]
   }
 
   type Mutation {
