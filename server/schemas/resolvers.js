@@ -18,13 +18,13 @@ const resolvers = {
       return User.findOne({ username }).populate('thoughts');
     },
     getAllThoughts: async () => {
-      const thoughts= await Thought.find().populate('comments').sort({ createdAt: -1 })
+      const thoughts = await Thought.find().populate('comments').sort({ createdAt: -1 })
       return thoughts
     },
     usersThoughts: async (parent, { username }) => {
       const params = username ? { username } : {};
-      const thoughts= await Thought.find({
-        thoughtAuthor:username
+      const thoughts = await Thought.find({
+        thoughtAuthor: username
       }).populate('comments')
       return thoughts
     },
@@ -105,16 +105,16 @@ const resolvers = {
     addComment: async (parent, { commentText, commentAuthor, thoughtId }, context) => {
       if (context.user) {
         const comment = await Comment.create({
-          commentText:commentText,
-          commentAuthor:commentAuthor,
-          thoughtId:thoughtId,
-      });
-      const thoughtData= await Thought.findOneAndUpdate(
-        { _id: thoughtId },
-        { $push: { comments: comment._id } },
-        {new:true}
-      );
-      return comment;
+          commentText: commentText,
+          commentAuthor: commentAuthor,
+          thoughtId: thoughtId,
+        });
+        const thoughtData = await Thought.findOneAndUpdate(
+          { _id: thoughtId },
+          { $push: { comments: comment._id } },
+          { new: true }
+        );
+        return comment;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -134,17 +134,12 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    removeComment: async (parent, { thoughtId, commentId }, context) => {
+    removeComment: async (parent, { commentId }, context) => {
       if (context.user) {
-        return Thought.findOneAndUpdate(
-          { _id: thoughtId },
+        return Comment.findOneAndUpdate(
+          { _id: commentId },
           {
-            $pull: {
-              comments: {
-                _id: commentId,
-                commentAuthor: context.user.username,
-              },
-            },
+            $pull: { _id: commentId },
           },
           { new: true }
         );

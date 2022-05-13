@@ -1,6 +1,21 @@
 import React from 'react';
+import { useMutation } from "@apollo/client";
+import Auth from "../utils/auth";
+import { REMOVE_COMMENT } from "../utils/mutations";
 
 const CommentList = ({ comments = [] }) => {
+  const [removeComment, { error }] = useMutation(REMOVE_COMMENT)
+  const removeCommentFunction = async (cid) => {
+    console.log(cid)
+    
+    const { data } = await removeComment({
+      variables: {
+        commentId: cid,
+        commentAuthor: Auth.getProfile().data.username,
+      },
+    });
+    window.location.assign('/me')
+  }
   return (
     <>
       <h3
@@ -19,6 +34,12 @@ const CommentList = ({ comments = [] }) => {
                   </span>
                 </p>
                 <p className="com-body">{comment.commentText}</p>
+                <button
+                    className="btn btn-sm btn-danger ml-auto"
+                    onClick={() => removeCommentFunction(comment._id)}
+                  >
+                    Delete
+                  </button>
               </div>
             </div>
           ))}

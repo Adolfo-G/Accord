@@ -55,6 +55,18 @@ export const ADD_COMMENT = gql`
   }
 `;
 
+export const REMOVE_COMMENT = gql`
+  mutation removeComment($commentId: ID!) {
+    removeComment(commentId: $commentId) {
+        _id
+        commentText
+        commentAuthor
+        createdAt
+        thoughtId
+    }
+  }
+`;
+
 export const SINGLE_UPLOAD = gql`
   mutation singleUpload($file: Upload!) {
     singleUpload(file: $file) {

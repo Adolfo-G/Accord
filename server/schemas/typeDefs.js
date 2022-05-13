@@ -52,7 +52,7 @@ const typeDefs = gql`
     addComment(commentText: String!, commentAuthor: String!, thoughtId:String!): Comment
     addThought(thoughtText: String!, thoughtBody: String!): Thought
     editThought(thoughtText: String!, thoughtBody: String!, thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Comment
+    removeComment(commentId: ID!): Comment
     removeThought(thoughtId: ID!): Thought
     multipleUpload(file: [Upload]!): SuccessMessage
     singleUpload(file: Upload!): SuccessMessage
