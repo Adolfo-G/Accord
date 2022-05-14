@@ -4,35 +4,12 @@ import { useMutation } from '@apollo/client';
 
 import { ADD_THOUGHT } from '../utils/mutations';
 import { QUERY_THOUGHTS, QUERY_ME } from '../utils/queries';
-import axios from 'axios';
 
 import Auth from '../utils/auth';
 
-// UNSPLASH
 const PostForm = () => {
   const [thoughtText, setThoughtText] = useState('');
   const [thoughtBody, setThoughtBody] = useState('');
-  const [img, setImg] = useState('');
-  const [res, setRes] = useState([]);
-
-  const fetchRequest = async () => {
-    const data = await fetch(
-      `https://api.unsplash.com/search/photos?page=1&query=${img}&client_id=NowIsjRQM_LT9V62QbZFHKt_lHGehaDTgF2pjaaLlHo&per_page=1`
-    );
-    const dataJ = await data.json();
-    const result = dataJ.results;
-    console.log(result);
-    setRes(result);
-  };
-  useEffect(() => {
-    fetchRequest();
-  }, []);
-
-  const SubmitImg = () => {
-    fetchRequest();
-    setImg('');
-  };
-  // UNSPLASH
 
   const [addThought, { error }] = useMutation(ADD_THOUGHT, {
     update(cache, { data: { addThought } }) {
@@ -115,40 +92,6 @@ const PostForm = () => {
                 onChange={handleChange}
               ></textarea>
             </div>
-
-            {/* UNSPLASH  */}
-            <div className="form-group">
-              <input
-                className="col-3 form-control-sm py-1 fs-4 text-capitalize border border-3 border-dark"
-                type="text"
-                placeholder="Search Anything..."
-                value={img}
-                onChange={(e) => setImg(e.target.value)}
-              />
-              <div className="col-12 d-flex justify-content-evenly flex-wrap">
-                {res.map((value) => {
-                  return (
-                    <>
-                      <img
-                        key={value.id}
-                        className="col-3 img-fluid img-thumbnail"
-                        src={value.urls.regular}
-                        alt="value.alt_description"
-                      />
-                    </>
-                  );
-                })}
-              </div>
-              <button
-                type="submitImg"
-                onClick={SubmitImg}
-                className="btn bg-dark text-white fs-3 mx-3"
-              >
-                Search
-              </button>
-            </div>
-            {/* UNSPLASH  */}
-
             <div className="post-submit">
               <button className="btn btn-primary btn-block py-3" type="submit">
                 Create
