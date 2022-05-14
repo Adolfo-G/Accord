@@ -21,14 +21,14 @@ const CommentForm = ({ thoughtId }) => {
           thoughtId,
           commentText,
           commentAuthor: Auth.getProfile().data.username,
-        },       
+        },
       });
 
       setCommentText('');
     } catch (err) {
       console.error(err);
     }
-    window.location.reload()
+    window.location.assign('/');
   };
 
   const handleChange = (event) => {
@@ -42,11 +42,8 @@ const CommentForm = ({ thoughtId }) => {
 
   return (
     <div>
-
-
       {Auth.loggedIn() ? (
         <>
-
           <form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
